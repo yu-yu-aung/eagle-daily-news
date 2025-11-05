@@ -18,16 +18,15 @@ const Page = () => {
 
   console.log("API Response:", data);
 
+  const articles = data?.articles || [];
+
+  console.log("articles: ", data?.articles);
+  console.log("first article: ", articles[0]);
+
   return (
     <div className="grid grid-cols-4 gap-2">
-      {data?.articles?.map((article, index) => (
-        <ArticleCard
-          key={index}
-          title={article.title}
-          description={article.description}
-          image={article.image}
-          url={article.url}
-        />
+      {articles?.map((article, index) => (
+        <ArticleCard article={article} key={index} />
       ))}
     </div>
   );

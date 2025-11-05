@@ -17,7 +17,7 @@ export default function useGNews(
 
   const { data, error, isLoading } = useSWR(url, fetcher, { refreshInterval });
 
-  console.log(url);
+  //console.log(url, API_KEY);
 
   return { data, error, isLoading };
 }
