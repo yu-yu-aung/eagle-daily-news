@@ -1,4 +1,5 @@
 import React from 'react'
+import CategoryButton from './CategoryButton'
 
 const CategoryList = () => {
 
@@ -12,7 +13,9 @@ const CategoryList = () => {
   }, 
   ]
   return (
-    <div>CategoryList</div>
+    categories.map((category, index) => {
+      <CategoryButton category={category} key={index}/>
+    })
   )
 }
 

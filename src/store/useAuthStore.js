@@ -8,7 +8,15 @@ const useAuthStore = create((set) => {
       userName: "",
       userEmail: "",
     },
-    setUser: (user) => set({ user }),
+    setUser: (userData) =>
+      set({
+        user: {
+          userId: userData?.id || null,
+          userName: userData?.user_metadata?.name || "",
+          userEmail: userData?.email || "",
+        },
+        isLoggedIn: !!userData,
+      }),
     logOut: () =>
       set({
         isLoggedIn: false,
