@@ -3,7 +3,7 @@
 import { Search } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const Header = () => {
@@ -57,7 +57,7 @@ const Header = () => {
             Latest News
         </Link>
         <button 
-          onClick={() => router.push("/auth?mode=register")} 
+          onClick={() => router.push("/auth?mode=signup")} 
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
             Register
         </button>
