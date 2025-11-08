@@ -5,12 +5,37 @@ const CategoryList = () => {
 
   const categories = [{
     id: 1, 
-    category: "Sports"
+    category: "General"
+    
+
+Nation
+Business
+Technology
+Entertainment
+Sports
+Science
+Health
   }, 
   {
     id: 2, 
-    category: "Politics"
-  }, 
+    category: "World"
+  },
+  {
+    id: 3, 
+    category: "World"
+  },
+  {
+    id: 2, 
+    category: "World"
+  },
+  {
+    id: 2, 
+    category: "World"
+  },
+  {
+    id: 2, 
+    category: "World"
+  },
   ]
   return (
     categories.map((category, index) => {
