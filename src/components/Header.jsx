@@ -45,7 +45,7 @@ const Header = () => {
         </div>
       </form>
 
-      <nav className='flex items-center justify-between'>
+      <nav className='flex items-center justify-between gap-4'>
         <Link 
           href="/" 
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>

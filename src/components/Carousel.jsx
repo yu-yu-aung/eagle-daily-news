@@ -33,10 +33,10 @@ const Carousel = ({imageUrls, autoSlide = false, autoSlideInterval = 3000}) => {
       </div>
 
       <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button onClick={prev} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
+        <button onClick={prev} className="p-1 rounded-full shadow bg-blue-100/80 text-gray-800 hover:bg-blue-100">
           <ChevronLeft size={40}/>
         </button>
-        <button onClick={next} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
+        <button onClick={next} className="p-1 rounded-full shadow bg-blue-100/80 text-gray-800 hover:bg-blue-100">
           <ChevronRight size={40}/>
         </button>
       </div>
@@ -44,7 +44,7 @@ const Carousel = ({imageUrls, autoSlide = false, autoSlideInterval = 3000}) => {
       <div className='absolute bottom-4 right-0 left-0'>
         <div className='flex items-center justify-center gap-2'>
           {imageUrls.map((_, i) => (
-            <div className={`transition-all w-3 h-3 bg-white rounded-full ${current === i ? "p-2" : "bg-opacity-50"}`}></div>
+            <div key={i} className={`transition-all w-3 h-3 bg-blue-50 rounded-full ${current === i ? "p-2" : "bg-opacity-50"}`}></div>
           ))}
         </div>
       </div>

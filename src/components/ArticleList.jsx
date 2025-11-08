@@ -24,7 +24,7 @@ const ArticleList = () => {
   console.log("first article: ", articles[0]);
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-5 px-24 gap-4">
       {articles?.map((article, index) => (
         <ArticleCard article={article} key={index} />
       ))}

@@ -1,4 +1,3 @@
-'use client'
 
 import React from 'react'
 import CategoryButton from './CategoryButton'
@@ -40,7 +39,7 @@ const CategoryList = () => {
   }
 ]
   return (
-    <div className='py-4 px-24 w-full overflow-scroll h-64'>
+    <div className='py-4 px-24 w-full overflow-scroll flex justify-between'>
       {categories.map((category) => (
       <CategoryButton category={category.category} key={category.id}/>
     ))}
