@@ -1,4 +1,4 @@
-import ArticleCard from "@/components/ArticleCard";
+
 import Carousel from "@/components/Carousel";
 import CategoryList from "@/components/CategoryList";
 import Header from "@/components/Header";

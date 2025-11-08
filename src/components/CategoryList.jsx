@@ -1,46 +1,50 @@
+'use client'
+
 import React from 'react'
 import CategoryButton from './CategoryButton'
 
 const CategoryList = () => {
 
-  const categories = [{
+  const categories = [
+  {
     id: 1, 
     category: "General"
-    
-
-Nation
-Business
-Technology
-Entertainment
-Sports
-Science
-Health
   }, 
   {
     id: 2, 
-    category: "World"
+    category: "Nation"
   },
   {
     id: 3, 
-    category: "World"
+    category: "Business"
   },
   {
-    id: 2, 
-    category: "World"
+    id: 4, 
+    category: "Technology"
   },
   {
-    id: 2, 
-    category: "World"
+    id: 5, 
+    category: "Entertainment"
   },
   {
-    id: 2, 
-    category: "World"
+    id: 6, 
+    category: "Sports"
   },
-  ]
+  {
+    id: 7, 
+    category: "Science"
+  },
+  {
+    id: 8, 
+    category: "Health"
+  }
+]
   return (
-    categories.map((category, index) => {
-      <CategoryButton category={category} key={index}/>
-    })
+    <div className='py-4 px-24 w-full overflow-scroll h-64'>
+      {categories.map((category) => (
+      <CategoryButton category={category.category} key={category.id}/>
+    ))}
+    </div>
   )
 }
 
