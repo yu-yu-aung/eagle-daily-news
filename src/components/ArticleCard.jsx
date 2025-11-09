@@ -21,12 +21,12 @@ const ArticleCard = ({ article, big = false, small = true }) => {
         />
       )}
 
-      <div className="p-5 flex flex-col h-[300px]">
+      <div className={`p-5 flex flex-col ${big ? "h-[350px]" : small ? "h-[200px]" : "h-[250px]"}`}>
         <div className='flex-1'>
           <h2 className={`mb-2 ${titleSize} font-bold tracking-tight text-gray-900`}>
             {article.title}
           </h2>
-          <p className="mb-3 font-normal text-gray-700 line-clamp-3">
+          <p className={`mb-3 font-normal text-gray-700 ${big ? "line-clamp-4" : small ? "line-clamp-1" : "line-clamp-3"} `}>
             {article.description}
           </p>
         </div>
