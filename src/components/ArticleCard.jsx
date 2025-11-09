@@ -1,44 +1,53 @@
-import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
-const ArticleCard = ({ article, big = false, small = true }) => {
+const ArticleCard = ({ article, big = false, small = false }) => {
   if (!article) return null;
 
-  const imageHeight = big ? "h-96" : small ? "h-40" : "h-48";
-  const titleSize = big ? "text-3xl" : small ? "text-xl" : "text-2xl";
+  const base =
+    "bg-white rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 flex flex-col";
+  const imageHeight = big ? "h-72" : small ? "h-40" : "h-56";
+  const padding = big ? "p-6" : small ? "p-4" : "p-5";
+  const titleSize = big ? "text-3xl" : small ? "text-lg" : "text-2xl";
+  const descSize = big ? "text-lg" : small ? "text-sm" : "text-base";
+  const buttonSize = big ? "text-lg" : small ? "text-sm" : "text-base";
+
+  const contentHeight = big
+    ? "min-h-[220px]"
+    : small
+    ? "min-h-[160px]"
+    : "min-h-[180px]";
 
   return (
-    <div
-      className={`bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition 
-        ${big ? "w-full" : "w-full max-w-sm"}`}
-    >
+    <div className={base}>
       {article.image && (
         <img
           src={article.image}
           alt={article.title}
-          className={`rounded-t-lg object-cover w-full ${imageHeight}`}
+          className={`w-full object-cover ${imageHeight}`}
         />
       )}
 
-      <div className={`p-5 flex flex-col ${big ? "h-[350px]" : small ? "h-[200px]" : "h-[250px]"}`}>
-        <div className='flex-1'>
-          <h2 className={`mb-2 ${titleSize} font-bold tracking-tight text-gray-900`}>
+      <div className={`flex flex-col justify-between flex-1 ${padding}`}>
+        <div className={`${contentHeight}`}>
+          <h2
+            className={`${titleSize} font-semibold text-gray-900 line-clamp-2 mb-2`}
+          >
             {article.title}
           </h2>
-          <p className={`mb-3 font-normal text-gray-700 ${big ? "line-clamp-4" : small ? "line-clamp-1" : "line-clamp-3"} `}>
+          <p className={`${descSize} text-gray-600 line-clamp-3`}>
             {article.description}
           </p>
         </div>
 
-        <div className="mt-auto">
+        <div className="mt-4">
           <Link
             href={article.url || "#"}
             target="_blank"
-            className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
+            className={`inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg ${buttonSize}`}
           >
-            Read more
-            <ChevronRight size={16} />
+            Read more <ChevronRight size={16} />
           </Link>
         </div>
       </div>

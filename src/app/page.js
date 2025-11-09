@@ -16,7 +16,6 @@ export default function Home() {
   };
   return (
     <>
-      <Header />
       <Carousel imageUrls={image.imageUrls} autoSlide={true} key={image.id} />
       <div className="mt-5 flex flex-col gap-4 items-center">
         <h1 className="text-4xl font-bold italic text-black">
@@ -33,7 +32,12 @@ export default function Home() {
         </h2>
         <CategoryList />
       </div>
-      <ArticleList />
+      <div className="py-10 flex flex-col gap-4 mt-5">
+        <h2 className="px-24 text-3xl font-bold text-orange-600">
+          Today's Latest News
+        </h2>
+        <ArticleList />
+      </div>
     </>
   );
 }

@@ -211,22 +211,37 @@ const ArticleList = () => {
   // console.log("first article: ", articles[0]);
 
   return (
-    <>
-      <div className="grid grid-cols-5 px-24 gap-6 w-full">
-        <div className="col-span-3">
-          <ArticleCard article={articles[0]} big={true}/>
-        </div>
-        <div className="col-span-2 flex flex-col gap-4">
-          <ArticleCard article={articles[1]} small={true}/>
-          <ArticleCard article={articles[2]} small/>
+    <div className="px-24 py-10 space-y-16">
+    {/* Top Section */}
+    <div className="grid grid-cols-12 gap-8">
+      <div className="col-span-7 flex flex-col gap-6">
+        <ArticleCard article={articles[9]} big />
+        <div className="flex gap-6">
+          <ArticleCard article={articles[8]} small />
+          <ArticleCard article={articles[7]} small />
         </div>
       </div>
-      <div className="flex gap-6 px-24 justify-between">
-        <ArticleCard article={articles[3]} small/>
-        <ArticleCard article={articles[4]} small/>
-        <ArticleCard article={articles[5]} small/>
+      <div className="col-span-5 flex flex-col gap-6 justify-between">
+        <ArticleCard article={articles[6]} />
+        <ArticleCard article={articles[5]} />
+      </div>
     </div>
-    </>
+
+    {/* Bottom Section */}
+    <div className="grid grid-cols-12 gap-8">
+      <div className="col-span-5 flex flex-col gap-6 justify-between">
+        <ArticleCard article={articles[4]} />
+        <ArticleCard article={articles[0]} />
+      </div>
+      <div className="col-span-7 flex flex-col gap-6">
+        <ArticleCard article={articles[3]} big />
+        <div className="flex gap-6">
+          <ArticleCard article={articles[1]} small />
+          <ArticleCard article={articles[2]} small />
+        </div>
+      </div>
+    </div>
+  </div>
     
   );
 };
