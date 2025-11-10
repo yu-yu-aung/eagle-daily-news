@@ -65,12 +65,12 @@ const Header = () => {
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
             <Bell />
         </Link>
-        
-        <button 
-          onClick={() => router.push("/auth?mode=login")} 
+
+        <Link 
+          href="/user-info" 
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-            <User size={32}/>
-        </button>
+            <User />
+        </Link>
       </nav>
     </header>
     )
