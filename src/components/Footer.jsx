@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10 mt-10 border-t border-gray-800">
+    <footer className="bg-gray-900 text-gray-300 py-10 mt-auto border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 gap-10">
         {/* Brand */}
         <div className="col-spans-1 flex flex-col items-start gap-4">

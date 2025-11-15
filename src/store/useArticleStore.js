@@ -1,9 +1,11 @@
 import { create } from "zustand";
 
-const useArticleStore = create((set, get) => {
+const useArticleStore = create((set) => {
   return {
-    savedArticles: [],
+    fetchedArticles: [], 
+    setFetchedArticles: (articles) => set ({fetchedArticles: articles}), 
 
+    savedArticles: [],
     addSavedArticle: (article) =>
       set((state) => ({
         savedArticles: [...state.savedArticles, article],

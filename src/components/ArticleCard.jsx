@@ -43,7 +43,7 @@ const ArticleCard = ({ article, big = false, small = false }) => {
 
         <div className="mt-4">
           <Link
-            href={article.url || "#"}
+            href={`/article/${article.id}`}
             target="_blank"
             className={`inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg ${buttonSize}`}
           >

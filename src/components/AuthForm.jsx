@@ -2,6 +2,7 @@
 
 import { signIn, signUp } from '@/lib/auth';
 import useAuthStore from '@/store/useAuthStore';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const AuthForm = ({mode = "login"}) => {
@@ -11,6 +12,8 @@ const AuthForm = ({mode = "login"}) => {
   const [password, setPassword] = useState(""); 
   const [loading, setLoading] = useState(false); 
   const {setUser} = useAuthStore(); 
+  const router = useRouter(); 
+  const [displayName, setDisplayName] = useState(""); 
   
   async function handleSubmit (e) {
     e.preventDefault(); 
@@ -19,7 +22,7 @@ const AuthForm = ({mode = "login"}) => {
     try {
       let response; 
       if (mode === "signup"){
-        response = await signUp(email, password); 
+        response = await signUp(email, password, displayName); 
       } else {
         response = await signIn(email, password)
       }
@@ -27,12 +30,17 @@ const AuthForm = ({mode = "login"}) => {
       if (response.data?.user){
         setUser(response.data.user);
         alert (`${mode === "signup" ? "Registered" : "Logged in"} successfully!`); 
+
+        router.push("/")
+        setEmail(""); 
+        setPassword("");
+        setDisplayName("");
     }
     } catch (error){
       alert(error.message); 
     } finally {
       setLoading(false);
-    }
+    } 
   }
   return (
     <form 
@@ -43,12 +51,23 @@ const AuthForm = ({mode = "login"}) => {
         {mode === "signup" ? "Create Your Account Now!" : "Welcome Back!"}
       </h2>
 
+      {mode === "signup" && (
+        <input
+          type='text'
+          placeholder='Enter your display name'
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          className='border p-2 rounded'
+          required
+        />
+      )}
       <input 
         type='email'
         placeholder='Enter your email!'
         value={email}
         className='border p-2 rounded'
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
 
       <input
@@ -57,12 +76,12 @@ const AuthForm = ({mode = "login"}) => {
         className="border p-2 rounded"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
 
-      <button>
+      <button className='border border-blue-800 bg-blue-600 text-white py-2 px-2 rounded  hover:scale-95 active:scale-95'>
         {loading ? "Processing..." : mode === "signup" ? "Register" : "Log In"}
       </button>
-
     </form>
   )
 }

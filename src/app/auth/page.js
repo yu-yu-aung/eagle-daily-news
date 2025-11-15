@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 const Page = () => {
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode") || "login";
-  const { isLoggedIn } = useAuthStore();
 
   return (
     <>
