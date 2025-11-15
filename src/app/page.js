@@ -1,9 +1,11 @@
 import ArticleList from "@/components/ArticleList";
 import Carousel from "@/components/Carousel";
 import CategoryList from "@/components/CategoryList";
-import Header from "@/components/Header";
+import LoadMoreBtn from "@/components/LoadMoreBtn";
+import { getInitialArticles } from "@/lib/getInitialArticles";
 
-export default function Home() {
+export default async function Home() {
+  const initialArticles = await getInitialArticles();
   const image = {
     id: 1,
     imageUrls: [
@@ -36,7 +38,8 @@ export default function Home() {
         <h2 className="px-24 text-3xl font-bold text-orange-600">
           Today's Latest News
         </h2>
-        <ArticleList />
+        <ArticleList articles={initialArticles} />
+        <LoadMoreBtn />
       </div>
     </>
   );

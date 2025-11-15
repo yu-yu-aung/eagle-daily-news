@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-const API_KEY = process.env.NEXT_PUBLIC_GNEWS_KEY;
+const API_KEY = process.env.GNEWS_KEY;
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function useGNews(
