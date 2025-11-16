@@ -1,0 +1,50 @@
+"use client"
+
+import useGNews from '@/hooks/useGNews'
+import React, { useState } from 'react'
+import ArticleList from './ArticleList';
+
+const LoadMoreBtn = () => {
+
+  const [maxArticles, setMaxArticles] = useState(0); 
+
+  
+
+  async function handleClickLoadMoreBtn (){
+    setMaxArticles(maxArticles + 10); 
+
+    const {data, isLoading, error } = useGNews("top-headlines", {
+    category: "sports", 
+    lang: "en", 
+    country: "us", 
+    max: maxArticles,
+  }); 
+
+  if (isLoading) return <p>Loading...</p>
+  if (error) return <p>Error loading articles</p>
+
+  const articles = data?.articles || []; 
+   
+   return articles
+  } 
+
+  
+
+  return (
+    <div className="py-10 space-y-16">
+
+      { articles.length > 0 && <ArticleList articles={articles}/>}
+
+      <button 
+        onClick={handleClickLoadMoreBtn}
+        className="mt-4 px-4 py-2 bg-orange-700 text-white rounded-lg align-middle"
+      >
+      Load More 
+      </button>
+      
+    </div>
+    
+  )
+}
+
+export default LoadMoreBtn
