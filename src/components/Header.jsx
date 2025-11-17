@@ -54,11 +54,6 @@ const Header = () => {
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
             Home
         </Link>
-        <Link 
-          href="/latest-articles" 
-          className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-            Latest News
-        </Link>
 
         <Link 
           href="/notifications" 
@@ -115,11 +110,6 @@ const Header = () => {
           href="/" 
           className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
             Home
-        </Link>
-        <Link 
-          href="/latest-articles" 
-          className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-            Latest News
         </Link>
         <button 
           onClick={() => router.push("/auth?mode=signup")} 

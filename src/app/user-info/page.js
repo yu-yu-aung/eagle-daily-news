@@ -5,11 +5,18 @@ import useArticleStore from "@/store/useArticleStore";
 import useAuthStore from "@/store/useAuthStore";
 import { BookMarked, LogOut, Mail, User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const page = () => {
   const { user, logOut } = useAuthStore();
-  const { savedArticles } = useArticleStore();
+  const { savedArticles, fetchSavedArticles } = useArticleStore();
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      fetchSavedArticles(user.id);
+    }
+  }, [user]);
 
   const handleLogOut = async () => {
     try {

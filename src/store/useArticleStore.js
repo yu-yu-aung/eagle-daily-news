@@ -1,3 +1,4 @@
+import { supabase } from "@/lib/supabaseClient";
 import { create } from "zustand";
 
 const useArticleStore = create((set) => {
@@ -13,6 +14,14 @@ const useArticleStore = create((set) => {
       set((state) => ({
         savedArticles: [...state.savedArticles, article],
       })),
+
+    fetchSavedArticles: async (userId) => {
+      const { data, error } = await supabase.from("saved_articles").select("*").eq("user_id", userId); 
+
+      if (!error && data){
+        set ({savedArticles: data}); 
+      }
+    },
 
     removeSavedArticle: (articleId) =>
       set((state) => ({
