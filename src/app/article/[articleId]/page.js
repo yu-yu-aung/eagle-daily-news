@@ -1,18 +1,14 @@
-'use client'
+"use client";
 
 import ArticleDisplay from "@/components/ArticleDisplay";
-import useGNews from "@/hooks/useGNews";
+import useArticleStore from "@/store/useArticleStore";
 
 export default function Page({ params }) {
-  const { articleId } = params;
+  const { selectedArticle } = useArticleStore();
 
-  const { data } = useGNews(); 
-
-  const article = (data?.articles.id === articleId) || {}; 
-
-  if (article = {}){
-    return <p>Error! Article not found!</p>
+  if (!selectedArticle) {
+    return <p>Error! Article not found!</p>;
   }
-  
-  return <ArticleDisplay articleId={articleId} />;
+
+  return <ArticleDisplay article={selectedArticle} />;
 }

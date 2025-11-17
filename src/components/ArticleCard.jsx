@@ -1,8 +1,14 @@
+'use client'
+
+import useArticleStore from "@/store/useArticleStore";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const ArticleCard = ({ article, big = false, small = false }) => {
+  const router = useRouter(); 
+  const { setSelectedArticle } = useArticleStore(); 
+
   if (!article) return null;
 
   const base =
@@ -19,6 +25,11 @@ const ArticleCard = ({ article, big = false, small = false }) => {
     ? "min-h-[160px]"
     : "min-h-[180px]";
 
+  const handleClickReadMore = () => {
+    setSelectedArticle(article); 
+    router.push(`/article/${encodeURIComponent(article.title)}`);
+  }
+  
   return (
     <div className={base}>
       {article.image && (
@@ -42,13 +53,12 @@ const ArticleCard = ({ article, big = false, small = false }) => {
         </div>
 
         <div className="mt-4">
-          <Link
-            href={`/article/${article.id}`}
-            target="_blank"
-            className={`inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg ${buttonSize}`}
+          <button
+            onClick={handleClickReadMore}
+            className={`inline-flex items-center gap-2 px-4 py-2 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-lg ${buttonSize}`}
           >
             Read more <ChevronRight size={16} />
-          </Link>
+          </button>
         </div>
       </div>
     </div>

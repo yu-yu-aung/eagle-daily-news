@@ -5,6 +5,9 @@ const useArticleStore = create((set) => {
     fetchedArticles: [], 
     setFetchedArticles: (articles) => set ({fetchedArticles: articles}), 
 
+    selectedArticle: null, 
+    setSelectedArticle: (article) => set({selectedArticle: article}), 
+
     savedArticles: [],
     addSavedArticle: (article) =>
       set((state) => ({
