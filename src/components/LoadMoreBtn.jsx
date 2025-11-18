@@ -29,8 +29,11 @@ const LoadMoreBtn = ({category = "general"}) => {
 
   return (
     <div className="py-10 flex flex-col items-center">
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-600">{error}</p>}
+      {loading && 
+        <p>Loading...</p>
+      }
+      {error && 
+        <p className="text-red-600">{error}</p>}
       {articles.length > 0 && <ArticleList articles={articles} />}
 
       <button

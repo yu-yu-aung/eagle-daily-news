@@ -4,10 +4,17 @@ import { deleteArticle } from "@/lib/articles";
 import { signOut } from "@/lib/auth";
 import useArticleStore from "@/store/useArticleStore";
 import useAuthStore from "@/store/useAuthStore";
-import { BookMarked, LogOut, Mail, Trash2, User } from "lucide-react";
+import {
+  BookMarked,
+  LogOut,
+  Mail,
+  Trash2,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Page = () => {
   const { user, logOut } = useAuthStore();
@@ -19,22 +26,73 @@ const Page = () => {
     fetchSavedArticles(user.userId);
   }, [user?.userId]);
 
-  console.log("fetchSavedArticles: ", savedArticles);
+  //console.log("fetchSavedArticles: ", savedArticles);
 
   const handleLogOut = async () => {
-    try {
-      await signOut();
-      logOut();
-      alert("Logged Out Successfully!");
-      router.push("/");
-    } catch (error) {
-      console.error("Logout error:", error.message);
-    }
+    toast(
+      (t) => (
+        <div className="flex flex-col gap-2">
+          <p>Are you sure you want to log out?</p>
+          <div className="flex gap-2 justify-end">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={async () => {
+                try {
+                  toast.dismiss(t.id);
+                  await signOut();
+                  logOut();
+                  toast.success("Logged out successfully");
+                  router.push("/");
+                } catch (error) {
+                  toast.dismiss(t.id);
+                  toast.error("Error: failed to log out!");
+                }
+              }}
+              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Log Out
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: Infinity }
+    );
+    
   };
 
-  const handleDeleteBtn = async (article) => {
-    await deleteArticle(article.id);
-    await fetchSavedArticles(user.userId);
+  const handleDeleteBtn = (article) => {
+    toast(
+      (t) => (
+        <div className="flex flex-col gap-2">
+          <p>Are you sure you want to delete this article?</p>
+          <div className="flex gap-2 justify-end">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={async () => {
+                await deleteArticle(article.id);
+                await fetchSavedArticles(user.userId);
+                toast.dismiss(t.id);
+                toast.success("Article deleted");
+              }}
+              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: Infinity }
+    );
   };
 
   return (
@@ -65,29 +123,26 @@ const Page = () => {
         {savedArticles.length === 0 ? (
           <p className="text-gray-500">No saved articles yet.</p>
         ) : (
-          <div className="border border-blue-700 p-4 flex flex-col">
+          <div className="p-4 flex flex-col">
             <ul>
               {savedArticles.map((article, index) => (
                 <li
                   key={index}
                   className="border p-3 rounded-md hover:bg-gray-50 transition mt-2 flex justify-between"
                 >
-                  <p className="w-[400px]">{article.title}</p>
-                  <div className="flex justify-between items-center w-[100px]">
-                    <Link
-                      href={article.url}
-                      target="_blank"
-                      className="underline text-blue-800"
-                    >
-                      View
-                    </Link>
-                    <button
-                      onClick={() => handleDeleteBtn(article)}
-                      className="underline text-red-800"
-                    >
-                      <Trash2 />
-                    </button>
-                  </div>
+                  <Link
+                    href={article.url}
+                    target="_blank"
+                    className="hover:underline hover:text-blue-800"
+                  >
+                    <p className="w-[360px]">{article.title}</p>
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteBtn(article)}
+                    className="underline text-red-800"
+                  >
+                    <Trash2 />
+                  </button>
                 </li>
               ))}
             </ul>

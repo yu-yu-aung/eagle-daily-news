@@ -4,6 +4,7 @@ import { signIn, signUp } from '@/lib/auth';
 import useAuthStore from '@/store/useAuthStore';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const AuthForm = ({mode = "login"}) => {
 
@@ -37,7 +38,7 @@ const AuthForm = ({mode = "login"}) => {
         setDisplayName("");
     }
     } catch (error){
-      alert(error.message); 
+      toast.error("An unknown error occurred!")
     } finally {
       setLoading(false);
     } 

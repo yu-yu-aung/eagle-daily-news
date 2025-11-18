@@ -3,12 +3,25 @@ import { supabase } from "./supabaseClient";
 export async function saveArticlestoDB(userId, article) {
   const articleId = article.id;
 
-  const { data, error } = await supabase.from("saved_articles").insert({
-    user_id: userId,
-    article_id: articleId,
-    title: article.title,
-    description: article.description,
-    url: article.url,
+  const { data: existingArticle, error: fetchError } = await supabase
+    .from("saved_articles")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("article_id", articleId)
+    .single(); 
+
+  if (existingArticle){
+    return { error: "Article already saved!"}; 
+  }
+
+  const { data, error } = await supabase
+    .from("saved_articles")
+    .insert({
+      user_id: userId,
+      article_id: articleId,
+      title: article.title,
+      description: article.description,
+      url: article.url,
   });
 
   if (error) {

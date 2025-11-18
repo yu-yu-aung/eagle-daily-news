@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Eagle's Daily News",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <Toaster position="top-center" reverseOrder={false}/>
       </body>
     </html>
   );
