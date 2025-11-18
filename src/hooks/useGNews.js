@@ -5,7 +5,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function useGNews(
   endpoint = "top-headlines",
-  parameters = { category: "general", lang: "en", country: "us", max: 10 }
+  parameters = {}
   //refreshInterval = 60000
 ) {
   const queryString = new URLSearchParams({
@@ -17,7 +17,7 @@ export default function useGNews(
 
   const { data, error, isLoading, mutate } = useSWR(url, fetcher);
 
-  console.log("url and api key: ", url, API_KEY);
+  //console.log("url and api key: ", url, API_KEY);
 
   return { data, error, isLoading, mutate, url };
 }
