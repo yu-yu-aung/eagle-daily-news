@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ArticleList from "./ArticleList";
 
-const LoadMoreBtn = () => {
+const LoadMoreBtn = ({category = "general"}) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const LoadMoreBtn = () => {
 
     try {
       const res = await fetch(
-        `https://gnews.io/api/v4/top-headlines?category=sports&lang=en&country=us&max=10&apikey=${process.env.NEXT_PUBLIC_GNEWS_KEY}`
+        `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=10&apikey=${process.env.NEXT_PUBLIC_GNEWS_KEY}`
       );
 
       if (!res.ok) throw new Error("Failed to fetch articles");

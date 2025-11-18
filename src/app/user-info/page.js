@@ -1,22 +1,25 @@
 "use client";
 
+import { deleteArticle } from "@/lib/articles";
 import { signOut } from "@/lib/auth";
 import useArticleStore from "@/store/useArticleStore";
 import useAuthStore from "@/store/useAuthStore";
-import { BookMarked, LogOut, Mail, User } from "lucide-react";
+import { BookMarked, LogOut, Mail, Trash2, User } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const page = () => {
+const Page = () => {
   const { user, logOut } = useAuthStore();
   const { savedArticles, fetchSavedArticles } = useArticleStore();
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
-      fetchSavedArticles(user.id);
-    }
-  }, [user]);
+    if (!user?.userId) return;
+    fetchSavedArticles(user.userId);
+  }, [user?.userId]);
+
+  console.log("fetchSavedArticles: ", savedArticles);
 
   const handleLogOut = async () => {
     try {
@@ -27,6 +30,11 @@ const page = () => {
     } catch (error) {
       console.error("Logout error:", error.message);
     }
+  };
+
+  const handleDeleteBtn = async (article) => {
+    await deleteArticle(article.id);
+    await fetchSavedArticles(user.userId);
   };
 
   return (
@@ -57,20 +65,37 @@ const page = () => {
         {savedArticles.length === 0 ? (
           <p className="text-gray-500">No saved articles yet.</p>
         ) : (
-          <ul>
-            {savedArticles.map((article, index) => (
-              <li
-                key={index}
-                className="border p-3 rounded-md hover:bg-gray-50 transition"
-              >
-                {article.title}
-              </li>
-            ))}
-          </ul>
+          <div className="border border-blue-700 p-4 flex flex-col">
+            <ul>
+              {savedArticles.map((article, index) => (
+                <li
+                  key={index}
+                  className="border p-3 rounded-md hover:bg-gray-50 transition mt-2 flex justify-between"
+                >
+                  <p className="w-[400px]">{article.title}</p>
+                  <div className="flex justify-between items-center w-[100px]">
+                    <Link
+                      href={article.url}
+                      target="_blank"
+                      className="underline text-blue-800"
+                    >
+                      View
+                    </Link>
+                    <button
+                      onClick={() => handleDeleteBtn(article)}
+                      className="underline text-red-800"
+                    >
+                      <Trash2 />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 mt-auto border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 gap-10">
-        {/* Brand */}
+        
         <div className="col-spans-1 flex flex-col items-start gap-4">
           <Link 
             href="/" 
@@ -29,7 +29,6 @@ export default function Footer() {
 
         
         <div className="flex justify-between">
-          {/* Categories */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-3">Popular Topics</h3>
             <ul className="space-y-2 text-sm">
@@ -40,7 +39,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-3">Follow Us</h3>
             <div className="flex space-x-4 mb-4">
@@ -57,7 +55,6 @@ export default function Footer() {
         
       </div>
 
-      {/* Copyright */}
       <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Eagle’s Daily News. All rights reserved.
       </div>

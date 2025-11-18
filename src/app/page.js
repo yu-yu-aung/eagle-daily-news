@@ -39,7 +39,7 @@ export default async function Home() {
           Today's Latest News
         </h2>
         <ArticleList articles={initialArticles} />
-        <LoadMoreBtn />
+        <LoadMoreBtn/>
       </div>
     </>
   );

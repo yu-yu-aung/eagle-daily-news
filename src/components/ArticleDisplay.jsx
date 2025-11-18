@@ -1,9 +1,9 @@
 "use client";
 
-import saveArticlestoDB from "@/lib/savedArticles";
+import { saveArticlestoDB } from "@/lib/articles";
 import useArticleStore from "@/store/useArticleStore";
 import useAuthStore from "@/store/useAuthStore";
-import { BookMarked, Copy, Facebook, Mail, MessagesSquare, Plane, Send, Share2, Share2Icon, ThumbsUp, Twitter, User } from "lucide-react";
+import { BookMarked, Copy, Facebook, Mail, MessagesSquare, Send, Share2, ThumbsUp, Twitter, User } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -75,6 +75,8 @@ const ArticleDisplay = ({ article }) => {
     } else {
       console.log("Article saved!");
     }
+
+    console.log("saved articles: " , savedArticles);
   };
 
   const handleClickShareBtn = () => {

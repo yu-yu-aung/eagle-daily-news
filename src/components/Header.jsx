@@ -5,12 +5,17 @@ import { Bell, Search, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Header = () => {
 
   const router = useRouter(); 
   const {isLoggedIn} = useAuthStore(); 
+  const [keyWord, setKeyWord] = useState(""); 
+
+  const handleSearch = () => {
+    setKeyWord(keyWord = e.target.value)
+  }
 
   if (isLoggedIn) {
     return (
