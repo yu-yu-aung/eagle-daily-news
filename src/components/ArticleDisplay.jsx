@@ -3,7 +3,7 @@
 import { saveArticlestoDB } from "@/lib/articles";
 import useArticleStore from "@/store/useArticleStore";
 import useAuthStore from "@/store/useAuthStore";
-import { BookMarked, Copy, Facebook, Mail, MessagesSquare, Send, Share2, ThumbsUp, Twitter, User } from "lucide-react";
+import { ArrowRight, BookMarked, Copy, Facebook, Mail, MessagesSquare, Send, Share2, ThumbsUp, Twitter, User } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -117,7 +117,6 @@ const ArticleDisplay = ({ article }) => {
       <h1 className="text-4xl font-extrabold leading-tight mb-6">
         {article.title}
       </h1>
-
       
       <div className="w-full h-80 rounded-xl overflow-hidden shadow-md">
         <img
@@ -126,7 +125,6 @@ const ArticleDisplay = ({ article }) => {
           className="w-full h-full object-cover"
         />
       </div>
-
       
       <div className="flex flex-wrap gap-4 justify-end mt-6">
         <button
@@ -168,13 +166,11 @@ const ArticleDisplay = ({ article }) => {
           <span className="font-medium">Share</span>
         </button>
       </div>
-
       
       <p className="mt-8 text-lg text-gray-700 leading-relaxed">
         {article.description}
       </p>
 
-      
       <p className="mt-4 text-[17px] leading-loose whitespace-pre-line text-gray-800">
         {article.content}
       </p>
@@ -185,7 +181,7 @@ const ArticleDisplay = ({ article }) => {
         className="text-blue-600 hover:text-blue-800 hover:underline 
         mt-8 block font-semibold"
       >
-        View original source →
+        View original source <ArrowRight />
       </Link>
 
       {/* Comment Input Section */}

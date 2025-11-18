@@ -4,7 +4,6 @@ import ArticleCard from "@/components/ArticleCard";
 const ArticleList = ({articles}) => {
 
   return (
-    
     <div className="px-24 py-10 space-y-16">
     {/* Top Section */}
     <div className="grid grid-cols-12 gap-8">

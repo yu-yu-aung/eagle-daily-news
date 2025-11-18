@@ -1,8 +1,6 @@
 "use client";
 
 import AuthForm from "@/components/AuthForm";
-import Header from "@/components/Header";
-import useAuthStore from "@/store/useAuthStore";
 import { useSearchParams } from "next/navigation";
 
 const Page = () => {

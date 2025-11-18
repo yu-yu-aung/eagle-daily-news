@@ -7,7 +7,18 @@ export default function Page({ params }) {
   const { selectedArticle } = useArticleStore();
 
   if (!selectedArticle) {
-    return <p>Error! Article not found!</p>;
+    return (
+      <>
+        <img
+          src="/error.jpg"
+          alt="No Data!"
+          className="w-40 h-40 object-contain"
+        />
+        <p className="text-xl font-semibold text-gray-700">
+          Something went wrong!
+        </p>
+      </>
+    );
   }
 
   return <ArticleDisplay article={selectedArticle} />;

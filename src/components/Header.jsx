@@ -23,7 +23,7 @@ const Header = () => {
   }
 
   return (
-    <header className='bg-gray-50 shadow-[0_4px_4px_rgba(0,0,0,0.25)] px-24 flex justify-between items-center py-5'>
+    <header className='bg-gray-50 shadow-[0_4px_4px_rgba(0,0,0,0.25)] px-24 flex justify-between items-center py-5 z-30'>
       <Link 
       href="/" 
       className='flex gap-2 items-center'>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import ArticleList from "./ArticleList";
+import ArticleListLoadingSkeleton from "./ArticleListLoadingSkeleton";
 
 const LoadMoreBtn = ({category = "general"}) => {
   const [articles, setArticles] = useState([]);
@@ -30,10 +31,18 @@ const LoadMoreBtn = ({category = "general"}) => {
   return (
     <div className="py-10 flex flex-col items-center">
       {loading && 
-        <p>Loading...</p>
+        <ArticleListLoadingSkeleton />
       }
       {error && 
-        <p className="text-red-600">{error}</p>}
+      <>
+        <img 
+          src="/error.jpg" 
+          alt="No Data!" 
+          className="w-40 h-40 object-contain"
+        />
+        <p className="text-xl font-semibold text-gray-700">Something went wrong!</p>
+      </>  
+      }
       {articles.length > 0 && <ArticleList articles={articles} />}
 
       <button
