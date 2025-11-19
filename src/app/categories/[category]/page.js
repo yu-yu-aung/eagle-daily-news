@@ -6,6 +6,56 @@ import LoadMoreBtn from "@/components/LoadMoreBtn";
 import useGNews from "@/hooks/useGNews";
 import { use } from "react";
 
+// export async function generateMetadata({params}){
+//   const res = await fetch(
+//     `https://gnews.io/api/v4/top-headlines?apikey=${process.env.NEXT_PUBLIC_GNEWS_KEY}&category=${params.slug}`, 
+//     { cache: "no-cache" }
+//   ); 
+
+//   const data = await res.json();
+//   const article = data.articles?.[0]; 
+  
+//   if (!article) {
+//     return {
+//       title: `${params.slug.toUpperCase()} News`,
+//       description: `Latest ${params.slug} news and updates.`,
+//       openGraph: {
+//         title: `${params.slug} News`,
+//         description: `Latest ${params.slug} news and updates.`,
+//         type: "website",
+//       },
+//     };
+//   }
+
+//   const ogImage = article.image || "/og-default.jpg";
+
+//   return {
+//     title: `${params.slug.toUpperCase()} – ${article.title}`,
+//     description: article.description || `Latest ${params.slug} news.`,
+
+//     openGraph: {
+//       title: `${params.slug.toUpperCase()} – ${article.title}`,
+//       description: article.description,
+//       type: "website",             // FIXED
+//       url: `https://your-domain.com/category/${params.slug}`, // FIXED
+//       images: [
+//         {
+//           url: ogImage,
+//           width: 1200,
+//           height: 630,
+//         },
+//       ],
+//     },
+
+//     twitter: {
+//       card: "summary_large_image",
+//       title: article.title,
+//       description: article.description,
+//       images: [ogImage],
+//     },
+//   };
+// }
+
 export default function Page({ params }) {
   const resolvedParams = use(params);
   const { category } = resolvedParams;

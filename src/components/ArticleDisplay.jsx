@@ -126,7 +126,7 @@ const ArticleDisplay = ({ article }) => {
         />
       </div>
       
-      <div className="flex flex-wrap gap-4 justify-end mt-6">
+      <div className="flex flex-wrap justify-between sm:gap-4 lg:gap-4 sm:justify-end lg:justify-end mt-6">
         <button
           onClick={handleClickLikeBtn}
           className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 

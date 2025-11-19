@@ -34,7 +34,7 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex gap-2 items-center">
           <img src="/logo.png" alt="The Eagle's Daily News Logo" className="w-12 h-12" />
-          <h2 className="hidden sm:block text-lg sm:text-xl font-bold italic font-serif leading-tight">
+          <h2 className="text-lg sm:text-xl font-bold italic font-serif leading-tight">
             Eagle's <br /> Daily News
           </h2>
         </Link>

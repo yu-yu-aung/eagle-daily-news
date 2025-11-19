@@ -1,18 +1,11 @@
-"use client";
-
-import AuthForm from "@/components/AuthForm";
-import { useSearchParams } from "next/navigation";
+import AuthPageWrapper from "@/components/AuthPageWrapper";
+import { Suspense } from "react";
 
 const Page = () => {
-  const searchParams = useSearchParams();
-  const mode = searchParams.get("mode") || "login";
-
   return (
-    <>
-      <div className="min-h-screen flex items-center justify-center">
-        <AuthForm mode={mode} />
-      </div>
-    </>
+    <Suspense fallback={<div>Loading....</div>}>
+      <AuthPageWrapper />
+    </Suspense>
   );
 };
 
