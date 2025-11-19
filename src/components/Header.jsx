@@ -1,97 +1,145 @@
 'use client'
 
 import useAuthStore from '@/store/useAuthStore'
-import { Search, User } from 'lucide-react'
-import Image from 'next/image'
+import { Search, User, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Header = () => {
+  const router = useRouter()
+  const { isLoggedIn } = useAuthStore()
+  const [keyWord, setKeyWord] = useState("")
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  const router = useRouter(); 
-  const {isLoggedIn} = useAuthStore(); 
-  const [keyWord, setKeyWord] = useState(""); 
+  // mark client mount
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSearch = (e) => {
-    //console.log(keyWord);
-    e.preventDefault(); 
-    if (!keyWord.trim()) return; 
+    e.preventDefault()
+    if (!keyWord.trim()) return
 
-    router.push(`/search?query=${keyWord}`);
-    setKeyWord("");
+    router.push(`/search?query=${keyWord}`)
+    setKeyWord("")
+    setMenuOpen(false) // close menu on search
   }
 
   return (
-    <header className='bg-gray-50 shadow-[0_4px_4px_rgba(0,0,0,0.25)] px-24 flex justify-between items-center py-5 z-30'>
-      <Link 
-      href="/" 
-      className='flex gap-2 items-center'>
-        <Image 
-          src="/logo.png" 
-          alt="The Eagle's Daily News Logo" 
-          width={50} 
-          height={50}/>
-        <h2 className='text-xl font-bold italic font-serif'>
-          Eagle's <br/> 
-          Daily News
-        </h2>
-      </Link>
-      
-      <form 
-        className="max-w-md mx-auto w-[300px]"
-        onSubmit={handleSearch}
-      >   
-        <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <Search className="w-4 h-4 text-gray-500"/>
-          </div>
-          <input 
-            type="search" 
-            id="default-search" 
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
-            value={keyWord}
-            onChange={(e) => setKeyWord(e.target.value)}
-            placeholder="Search Mockups, Logos..." 
-            required />
-          <button 
-            type="submit" 
-            className="text-white absolute end-2.5 bottom-2.5 bg-orange-700 hover:bg-orange-800 active:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
-              Search
-          </button>
-        </div>
-      </form>
+    <header className="bg-gray-50 shadow-md py-5 px-4 sm:px-8 lg:px-24 sticky top-0 z-30">
+      <div className="flex justify-between items-center">
 
-      <nav className='flex items-center justify-between gap-4'>
-        <Link 
-          href="/" 
-          className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-            Home
+        {/* Logo */}
+        <Link href="/" className="flex gap-2 items-center">
+          <img src="/logo.png" alt="The Eagle's Daily News Logo" className="w-12 h-12" />
+          <h2 className="hidden sm:block text-lg sm:text-xl font-bold italic font-serif leading-tight">
+            Eagle's <br /> Daily News
+          </h2>
         </Link>
-        { isLoggedIn && (
-            <Link 
-              href="/user-info" 
-              className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'
+
+        {/* Desktop Search */}
+        <form onSubmit={handleSearch} className="hidden md:block max-w-md w-[300px]">
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Search className="w-4 h-4 text-gray-500" />
+            </div>
+            <input
+              type="search"
+              className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 focus:border-orange-500"
+              placeholder="Search news…"
+              value={keyWord}
+              onChange={(e) => setKeyWord(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="text-white absolute right-2.5 bottom-2 bg-orange-700 hover:bg-orange-800 font-medium rounded-lg text-sm px-3 py-1.5"
             >
+              Search
+            </button>
+          </div>
+        </form>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-4">
+          <Link className="p-2 text-lg font-semibold hover:text-orange-700" href="/">Home</Link>
+
+          {isLoggedIn ? (
+            <Link href="/user-info" className="p-2 text-lg font-semibold hover:text-orange-700">
               <User />
             </Link>
-        )}
-        { !isLoggedIn && (
+          ) : (
+            <>
+              <button onClick={() => router.push("/auth?mode=signup")} className="p-2 text-lg font-semibold hover:text-orange-700">Register</button>
+              <button onClick={() => router.push("/auth?mode=login")} className="p-2 text-lg font-semibold hover:text-orange-700">Log In</button>
+            </>
+          )}
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Slide-In Menu */}
+      <div
+        className={`
+          fixed top-0 right-0 h-full w-72 bg-white shadow-lg p-6 z-40
+          transform transition-transform duration-300 ease-in-out
+          ${menuOpen ? "translate-x-0" : "translate-x-full"}
+          ${!mounted ? "opacity-0 pointer-events-none" : ""}
+        `}
+      >
+        {mounted && (
           <>
-            <button 
-              onClick={() => router.push("/auth?mode=signup")} 
-              className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-                Register
-            </button>
-            <button 
-              onClick={() => router.push("/auth?mode=login")} 
-              className='p-3 text-2xl font-semibold hover:border-2 hover:border-orange-400 hover:bg-orange-50 hover:scale-3d'>
-                Log In
-            </button>
-        </>
+            <div className="flex justify-between items-center">
+              <h3 className="font-semibold text-lg">Eagle's Daily News</h3>
+              <button onClick={() => setMenuOpen(false)}>
+                <X size={28} />
+              </button>
+            </div>
+
+            {/* Mobile Search */}
+            <form onSubmit={handleSearch} className="mt-12">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Search className="w-4 h-4 text-gray-500" />
+                </div>
+                <input
+                  type="search"
+                  className="block w-full p-3 pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 focus:border-orange-500"
+                  placeholder="Search news…"
+                  value={keyWord}
+                  onChange={(e) => setKeyWord(e.target.value)}
+                  required
+                />
+                <button type="submit" className="text-sm text-white absolute right-2.5 bottom-2 px-2 py-1 bg-orange-700 hover:bg-orange-800 font-medium rounded">
+                  Search
+                </button>
+              </div>
+            </form>
+
+            {/* Mobile Nav Links */}
+            <nav className="mt-8 flex flex-col gap-4 text-lg font-semibold">
+              <Link href="/" className="hover:text-orange-700">Home</Link>
+
+              {isLoggedIn ? (
+                <Link href="/user-info" className="hover:text-orange-700 flex items-center gap-2">
+                  <User /> Profile
+                </Link>
+              ) : (
+                <>
+                  <button onClick={() => router.push("/auth?mode=signup")} className="text-left hover:text-orange-700">Register</button>
+                  <button onClick={() => router.push("/auth?mode=login")} className="text-left hover:text-orange-700">Log In</button>
+                </>
+              )}
+            </nav>
+          </>
         )}
-      </nav>
+      </div>
     </header>
   )
 }

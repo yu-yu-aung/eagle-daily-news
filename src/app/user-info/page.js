@@ -121,7 +121,14 @@ const Page = () => {
         </h2>
 
         {savedArticles.length === 0 ? (
-          <p className="text-gray-500">No saved articles yet.</p>
+          <>
+            <img 
+              src="/error.jpg" 
+              alt="No Data!" 
+              className="w-40 h-40 object-contain"
+            />
+            <p className="text-lg sm:text-2xl lg:text-3xl font-semibold text-gray-700">No saved article yet!</p>
+          </>  
         ) : (
           <div className="p-4 flex flex-col">
             <ul>
@@ -135,7 +142,7 @@ const Page = () => {
                     target="_blank"
                     className="hover:underline hover:text-blue-800"
                   >
-                    <p className="w-[360px]">{article.title}</p>
+                    <p className="w-[200px] sm:w-[280px] lg:w-[360px] line-clamp-2">{article.title}</p>
                   </Link>
                   <button
                     onClick={() => handleDeleteBtn(article)}

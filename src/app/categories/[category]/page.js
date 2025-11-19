@@ -39,7 +39,7 @@ export default function Page({ params }) {
           alt="No Data!"
           className="w-40 h-40 object-contain"
         />
-        <p className="text-xl font-semibold text-gray-700">
+        <p className="text-sm sm:text-lg lg:text-xl font-semibold text-gray-700">
           Something went wrong!
         </p>
       </>
@@ -50,7 +50,7 @@ export default function Page({ params }) {
 
   return (
     <div className="py-10 flex flex-col gap-4 mt-5">
-      <h2 className="px-24 text-3xl font-bold text-orange-600">
+      <h2 className="px-4 sm:px-8 lg:px-24 text-lg sm:text-2xl lg:text-3xl font-bold text-orange-600">
         Hottest {category} News
       </h2>
       <ArticleList articles={articles} />

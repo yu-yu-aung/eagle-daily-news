@@ -39,7 +39,7 @@ const CategoryList = () => {
   }
 ]
   return (
-    <div className='py-4 px-24 w-full overflow-scroll flex justify-between'>
+    <div className='py-4 px-4 sm:px-8 lg:px-24 w-full overflow-scroll flex gap-4 lg:justify-between sm:justify-between'>
       {categories.map((category) => (
       <CategoryButton category={category.category} key={category.id}/>
     ))}

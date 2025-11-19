@@ -14,7 +14,7 @@ export default function Page({ params }) {
           alt="No Data!"
           className="w-40 h-40 object-contain"
         />
-        <p className="text-xl font-semibold text-gray-700">
+        <p className="text-sm sm:text-lg lg:text-xl font-semibold text-gray-700">
           Something went wrong!
         </p>
       </>

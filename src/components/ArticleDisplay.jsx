@@ -114,7 +114,7 @@ const ArticleDisplay = ({ article }) => {
   return (
     <div className="max-w-3xl mx-auto py-10 px-6 relative">
       
-      <h1 className="text-4xl font-extrabold leading-tight mb-6">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-6">
         {article.title}
       </h1>
       
@@ -130,9 +130,9 @@ const ArticleDisplay = ({ article }) => {
         <button
           onClick={handleClickLikeBtn}
           className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 
-          px-4 py-2 rounded-full transition shadow-sm active:scale-95"
+          px-2 py-1 sm:px-4 lg:px-4 sm:py-2 lg:py-2 rounded-full transition shadow-sm active:scale-95 text-xs sm:text-sm lg:text-sm"
         >
-          <ThumbsUp className= {`size-5 ${liked ? 'text-blue-700' : ''}`} />
+          <ThumbsUp className= {`size-3 lg:size-5 sm:size-5 ${liked ? 'text-blue-700' : ''}`} />
           <span className={`font-medium ${liked ? 'hidden' : ''}`}>Like</span>
           <span className={`font-medium ${!liked ? 'hidden' : 'text-blue-700'}`}>Liked</span>
         </button>
@@ -140,9 +140,9 @@ const ArticleDisplay = ({ article }) => {
         <button
           onClick={handleClickCommentBtn}
           className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 
-          px-4 py-2 rounded-full transition shadow-sm active:scale-95"
+          px-2 py-1 sm:px-4 lg:px-4 sm:py-2 lg:py-2 rounded-full transition shadow-sm active:scale-95 text-xs sm:text-sm lg:text-sm"
         >
-          <MessagesSquare className="size-5" />
+          <MessagesSquare className="size-3 lg:size-5 sm:size-5" />
           <span className="font-medium">Comment</span>
         </button>
 
@@ -150,9 +150,9 @@ const ArticleDisplay = ({ article }) => {
           onClick={handleClickSaveBtn}
           disabled={saved}
           className={`flex items-center gap-2 bg-gray-100 hover:bg-gray-200 
-          px-4 py-2 rounded-full transition shadow-sm active:scale-95`}
+          px-2 py-1 sm:px-4 lg:px-4 sm:py-2 lg:py-2 rounded-full transition shadow-sm active:scale-95 text-xs sm:text-sm lg:text-sm`}
         >
-          <BookMarked className={`size-5 ${saved ? 'text-blue-800' : ''}`} />
+          <BookMarked className={`size-3 lg:size-5 sm:size-5 ${saved ? 'text-blue-800' : ''}`} />
           <span className={`font-medium ${saved ? 'hidden' : ''}`}>Save</span>
           <span className={`font-medium ${!saved ? 'hidden' : 'text-blue-800'}`}>Saved</span>
         </button>
@@ -160,9 +160,9 @@ const ArticleDisplay = ({ article }) => {
         <button
           onClick={handleClickShareBtn}
           className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 
-          px-4 py-2 rounded-full transition shadow-sm active:scale-95"
+          px-2 py-1 sm:px-4 lg:px-4 sm:py-2 lg:py-2 rounded-full transition shadow-sm active:scale-95 text-xs sm:text-sm lg:text-sm"
         >
-          <Share2 className="size-5" />
+          <Share2 className="size-3 lg:size-5 sm:size-5" />
           <span className="font-medium">Share</span>
         </button>
       </div>
@@ -179,9 +179,9 @@ const ArticleDisplay = ({ article }) => {
         href={article.url}
         target="_blank"
         className="text-blue-600 hover:text-blue-800 hover:underline 
-        mt-8 block font-semibold"
+        mt-8 font-semibold"
       >
-        View original source <ArrowRight />
+        View original source
       </Link>
 
       {/* Comment Input Section */}
@@ -309,7 +309,6 @@ const ArticleDisplay = ({ article }) => {
           Cancel
         </button>
       </div>
-
     </div>
   );
 };

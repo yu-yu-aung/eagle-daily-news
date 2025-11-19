@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Toaster } from "react-hot-toast";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata = {
   title: "Eagle's Daily News",
@@ -14,10 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <Header />
-        {children}
-        <Footer />
-        <Toaster position="top-center" reverseOrder={false}/>
+        <PageTransition>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster position="top-center" reverseOrder={false} />
+        </PageTransition>
       </body>
     </html>
   );
