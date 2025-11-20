@@ -37,12 +37,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <PageTransition>
-          <Header />
-          {children}
-          <Footer />
-          <Toaster position="top-center" reverseOrder={false} />
-        </PageTransition>
+          <PageTransition>
+            <Header />
+            {children}
+            <Footer />
+            <Toaster position="top-center" reverseOrder={false} />
+          </PageTransition>
       </body>
     </html>
   );

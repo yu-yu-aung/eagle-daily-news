@@ -8,13 +8,13 @@ import { use } from "react";
 
 // export async function generateMetadata({params}){
 //   const res = await fetch(
-//     `https://gnews.io/api/v4/top-headlines?apikey=${process.env.NEXT_PUBLIC_GNEWS_KEY}&category=${params.slug}`, 
+//     `https://gnews.io/api/v4/top-headlines?apikey=${process.env.NEXT_PUBLIC_GNEWS_KEY}&category=${params.slug}`,
 //     { cache: "no-cache" }
-//   ); 
+//   );
 
 //   const data = await res.json();
-//   const article = data.articles?.[0]; 
-  
+//   const article = data.articles?.[0];
+
 //   if (!article) {
 //     return {
 //       title: `${params.slug.toUpperCase()} News`,
@@ -72,9 +72,7 @@ export default function Page({ params }) {
       <>
         <h2 className="text-2xl px-24 py-10 font-semibold mb-6">
           Search results for:{" "}
-          <span className="text-orange-700">
-            {category}
-          </span>
+          <span className="text-orange-700">{category}</span>
         </h2>
         <ArticleListLoadingSkeleton />
       </>
