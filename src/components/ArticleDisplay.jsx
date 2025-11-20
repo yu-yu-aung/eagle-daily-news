@@ -219,12 +219,12 @@ const ArticleDisplay = ({ article }) => {
       )}
 
       {/* Modal for sharing the article */}
-      <div className={`absolute z-30 top-80 right-4 sm:right-20 lg:right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-2 sm:p-4 lg:p-6 w-[200px] sm:w-[300px] lg:w-[500px] border border-gray-200 flex flex-col items-center`}>
+      <div className={`absolute z-30 top-80 right-10 sm:right-20 lg:right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-2 sm:p-4 lg:p-6 w-[280px] sm:w-[300px] lg:w-[500px] border border-gray-200 flex flex-col items-center`}>
         <h3 className="tex-lg sm:text-xl lg:text-xl font-semibold mb-4 text-gray-800 line-clamp-2">{article.title}</h3>
 
         <div className="flex w-full items-center justify-between bg-gray-100 p-2 rounded mb-4">
           <p className="truncate text-gray-700 w-[300px] line-clamp-2 h-auto text-sm">{window.location.href}</p>
-          <button 
+          <button  
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
               toast.success("Link copied to clipboard")
@@ -257,7 +257,7 @@ const ArticleDisplay = ({ article }) => {
             }}
             className="flex items-center justify-center gap-2 p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
           >
-            <Facebook className="size-5" />
+            <Facebook className="size-4 sm:size-5 lg:size-5"  />
             Facebook
           </button>
           <button 
@@ -270,7 +270,7 @@ const ArticleDisplay = ({ article }) => {
             }}
             className="flex items-center justify-center gap-2 p-2 bg-blue-400 text-white rounded hover:bg-blue-500 transition"
           >
-            <Twitter className="size-5" />
+            <Twitter className="size-4 sm:size-5 lg:size-5" />
             Twitter
           </button>
           <button 
@@ -283,7 +283,7 @@ const ArticleDisplay = ({ article }) => {
             }}
             className="flex items-center justify-center gap-2 p-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
           >
-            <Mail className="size-5" />
+            <Mail className="size-4 sm:size-5 lg:size-5" />
             Mail
           </button>
           <button 
@@ -296,7 +296,7 @@ const ArticleDisplay = ({ article }) => {
             }}
             className="flex items-center justify-center gap-2 p-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 transition"
           >
-            <Send className="size-5" />
+            <Send className="size-4 sm:size-5 lg:size-5"  />
             Telegram
           </button>
         </div>
