@@ -219,8 +219,8 @@ const ArticleDisplay = ({ article }) => {
       )}
 
       {/* Modal for sharing the article */}
-      <div className={`absolute z-30 top-80 right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-6 w-[500px] border border-gray-200 flex flex-col items-center`}>
-        <h3 className="text-lg font-semibold mb-4 text-gray-800 line-clamp-2">{article.title}</h3>
+      <div className={`absolute z-30 top-80 right-4 sm:right-20 lg:right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-2 sm:p-4 lg:p-6 w-[200px] sm:w-[300px] lg:w-[500px] border border-gray-200 flex flex-col items-center`}>
+        <h3 className="tex-lg sm:text-xl lg:text-xl font-semibold mb-4 text-gray-800 line-clamp-2">{article.title}</h3>
 
         <div className="flex w-full items-center justify-between bg-gray-100 p-2 rounded mb-4">
           <p className="truncate text-gray-700 w-[300px] line-clamp-2 h-auto text-sm">{window.location.href}</p>
@@ -233,7 +233,7 @@ const ArticleDisplay = ({ article }) => {
             }
             className="text-blue-600 hover:text-blue-800 border-l-2 border-gray-600 pl-2 flex items-center gap-1"
           >
-            <Copy className="size-5" />
+            <Copy className="size-4 sm:size-5 lg:size-5" />
             Copy
           </button>
         </div>
@@ -246,7 +246,7 @@ const ArticleDisplay = ({ article }) => {
         </div>
 
         {/* Social Buttons */}
-        <div className="flex gap-4 mb-4">
+        <div className="grid grid-cols-2 sm:flex lg:flex gap-4 mb-4">
           <button 
             onClick={() => {
               window.open(
