@@ -1,7 +1,7 @@
 'use client'
 
 import useAuthStore from '@/store/useAuthStore'
-import { Search, User, Menu, X } from 'lucide-react'
+import { Search, User, Menu, X, MousePointer } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
@@ -17,6 +17,8 @@ const Header = () => {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  if (!mounted) return null;
 
   const handleSearch = (e) => {
     e.preventDefault()
