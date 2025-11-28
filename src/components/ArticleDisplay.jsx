@@ -219,7 +219,7 @@ const ArticleDisplay = ({ article }) => {
       )}
 
       {/* Modal for sharing the article */}
-      <div className={`absolute z-30 top-80 right-10 sm:right-20 lg:right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-2 sm:p-4 lg:p-6 w-[280px] sm:w-[300px] lg:w-[500px] border border-gray-200 flex flex-col items-center`}>
+      <div className={`absolute z-30 top-80 right-10 sm:right-20 lg:right-30 ${!share ? "hidden" : ""} bg-white rounded-xl shadow-lg p-2 sm:p-4 lg:p-6 w-[280px] sm:w-[500px] lg:w-[500px] border border-gray-200 flex flex-col items-center`}>
         <h3 className="tex-lg sm:text-xl lg:text-xl font-semibold mb-4 text-gray-800 line-clamp-2">{article.title}</h3>
 
         <div className="flex w-full items-center justify-between bg-gray-100 p-2 rounded mb-4">
