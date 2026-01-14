@@ -1,12 +1,5 @@
 # Eagle’s Daily News 
 
-![GitHub Repo Size](https://img.shields.io/github/repo-size/yu-yu-aung/eagles-daily-news)
-![License](https://img.shields.io/github/license/your-username/eagles-daily-news)
-![Made with React](https://img.shields.io/badge/Made%20with-React-blue)
-![Next.js](https://img.shields.io/badge/Next.js-black)
-![Supabase](https://img.shields.io/badge/Supabase-%2300F-blue)
-![GNews API](https://img.shields.io/badge/GNews-API-yellow)
-
 **Eagle’s Daily News** is a modern news platform that lets users read, share, and save daily updated articles from around the world.
 
 ---
